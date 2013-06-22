@@ -48,8 +48,8 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.6.10.2';
-$db['default']['username'] = 'adminJvUUlz8';
+$db['default']['hostname'] = '';
+$db['default']['username'] = '';
 $db['default']['password'] = 'aQ2h9XhhviPH';
 $db['default']['database'] = 'referx';
 $db['default']['dbdriver'] = 'mysql';
