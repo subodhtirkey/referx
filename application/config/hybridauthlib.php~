@@ -36,7 +36,7 @@ $config =
 
 			"Facebook" => array (
 				"enabled" => true,
-				"keys"    => array ( "id" => "526610037403491", "secret" => "28828679baa4b6175d54f78c6a5eb94f" ),
+				"keys"    => array ( "id" => "531557260235773", "secret" => "751bf6526b488e959abd612bf71246a0" ),
 			),
 
 			/*"Twitter" => array (
@@ -57,7 +57,7 @@ $config =
 
 			"LinkedIn" => array (
 				"enabled" => true,
-				"keys"    => array ( "key" => "2a8jradu0tin", "secret" => "3RgsotEWqDvJ5B58" )
+				"keys"    => array ( "key" => "muxzdtxxp51m", "secret" => "bSJkvvUW81ayhDg1" )
 			),
 
 			/*"Foursquare" => array (

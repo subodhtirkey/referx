@@ -151,20 +151,19 @@ class HAuth extends CI_Controller {
 
 public function users_data()
 {
-//echo "Hello";
-$this->load->model('users');
-$d = $_POST['id'];
-
-//echo $d;
-//echo '<pre>';
-//print_r($d);
-//echo '</pre>';
+echo "Hello";
+//$this->load->model('users');
+$d = $this->input->post('id');
+echo $d;
+echo '<pre>';
+print_r($d);
+echo '</pre>';
 
 //$d = array('id' => $id);
 //$id = $_POST['id'];
-$status = $this->users->users_data($d); 
+//$status = $this->users->users_data($d); 
 
-echo json_encode($status);
+//echo json_encode($status);
 
 }
 
