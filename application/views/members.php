@@ -10,19 +10,19 @@
   
   <head>
     <title>Refer Me</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <link rel="stylesheet" href="https://app.divshot.com/themes/cerulean/bootstrap.css">
+    <link rel="stylesheet" href="https://app.divshot.com/themes/superhero/bootstrap.css">
     <link rel="stylesheet" href="https://app.divshot.com/css/bootstrap-responsive.css">
     <script src="https://app.divshot.com/js/jquery.min.js"></script>
     <script src="https://app.divshot.com/js/bootstrap.min.js"></script>
   </head>
   
-  <body>
+  <body id="">
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="#">Refer Me</a>
+          <a class="brand" href="#">refer X</a>
           <div class="navbar-content">
             <ul class="nav"></ul>
           </div>
@@ -82,7 +82,7 @@
 		<div class="span6">
 <!-- SETTINGS-------------------------------------------->
 
-	<form class="form-horizontal">
+	<div class="form-horizontal">
 		  <div class="control-group">
 		    <label class="control-label" for="firstname">First Name</label>
 		    <div class="controls">
@@ -103,39 +103,22 @@
 		      <input type="text" id="email" placeholder="email" value="<?php echo $profile_database['email']; ?>" disabled>
 		    </div>
 		  </div>
-		<?php if($profile_database['student_employee'] == 0):
-					?>
+		
 			<div class="control-group">
 					<label class="control-label" for="optionRadios">Student/Employee</label>
 					 <div class="controls">
 			<label class="radio">
-  			<input type="radio" name="optionsRadios" id="optionsRadios1" value="0" checked>
+  			<input type="radio" name="optionsRadios" id="optionsRadios1" value="0" <?php echo ($profile_database['student_employee'] == 0)?'checked':'' ?> >
   				Student
 			</label>
 			<label class="radio">
-  			<input type="radio" name="optionsRadios" id="optionsRadios2" value="1">
+  			<input type="radio" name="optionsRadios" id="optionsRadios2" value="1" <? echo ($profile_database['student_employee'] == 1)?'checked':'' ?> >
   				Employee
 			</label>
 			</div>
 			</div>
 
-			<?php else: 
-			?>
-			<div class="control-group">
-					<label class="control-label" for="optionRadios">Student/Employee</label>
-					 <div class="controls">
-			<label class="radio">
-  			<input type="radio" name="optionsRadios" id="optionsRadios1" value="0" >
-  				Student
-			</label>
-			<label class="radio">
-  			<input type="radio" name="optionsRadios" id="optionsRadios2" value="1" checked>
-  				Employee
-			</label>
-			</div>
-			</div>
-			<?php endif;
-			?>
+			
 
 
 		<div class="control-group">
@@ -188,24 +171,24 @@
 
 		  <div class="control-group">
 		    <div class="controls">
-			 <button type="submit" class="btn btn-primary">Change Profile Settings</button>
+			 <button type="submit" id ="<?php echo $profile_database['id']; ?>" class="btn btn-primary profiledetail">Change Profile Settings</button>
 	    	    </div>
 	  	  </div>
-	</form>	
+
+
+        <div class="alert alert-success" id ="mess" style="display:none;">
+                
+        </div>
+        <div class="alert alert-error" id = "mess1" style="display:none;">
+       
+        </div>
+	</div>	
 <!--Settings-->
 		</div>
 		<div class="span6">
-	<iframe id="myFrame" style="display:none" width="400" height="450"></iframe>
-		<input type="button" value="Open PDF" onclick = "openPdf()"/>
-		<script type="text/javascript">
-			function openPdf()
-				{
-					var omyFrame = document.getElementById("myFrame");
-					omyFrame.style.display="block";
-					omyFrame.src = "http://mytest-alumnize.rhcloud.com/test.pdf";
-				}
-			</script>
-			</div>
+	
+
+	</div>
 		</div>
 
     	</div>
@@ -340,19 +323,19 @@
     </div>
 	<div class="tab-pane well" id="postajob">
       		
-          <form class="form-horizontal">
+          <div class="form-horizontal">
 <h1>Post your job</h1>
 <br>
 <div class="control-group">
 <label class="control-label" for="jobtitle">Job Title</label>
 <div class="controls">
-<input type="text" id="title" placeholder="title" <="" div=""> 
+<input type="text" id="jobtitle" placeholder="title" <="" div=""> 
 </div>
 <br>
 <div class="control-group">
-<label class="control-label" for="decription">Job Description :</label>
+<label class="control-label" for="jobdescription">Job Description :</label>
 <div class="controls">
-<textarea rows="3"></textarea>
+<textarea id ="jobdescription"rows="3"></textarea>
 </div>
 </div>
 <div class="control-group">
@@ -362,9 +345,9 @@
 </div>
 </div>
 <div class="control-group">
-<label class="control-label" for="jobtitle">Experience (in years):</label>
+<label class="control-label" for="jobexperience">Experience (in years):</label>
 <div class="controls">
-<input type="text" id="exp" placeholder="" <="" div=""> 
+<input type="text" id="jobexperience" placeholder="" <="" div=""> 
 </div>
 <br>
 <div class="control-group">
@@ -378,40 +361,45 @@
 <label class="control-label" for="decription">Network :</label>
 <div class="controls">
 <label class="checkbox">
-<input type="checkbox" value="">
-Network 1
+<input type="checkbox" value="<?php echo $profile_database['college'];?>" id="jobnetwork1">
+<?php echo $profile_database['college'];?>
 </label>
 <br>
 <label class="checkbox">
-<input type="checkbox" value="">
-Network 2
+<input type="checkbox" value="<?php echo $profile_database['company'];?>" id="jobnetwork2">
+<?php echo $profile_database['company'];?>
 </label>
 </div>
 </div>
 <h1>Company Details</h1>
 <br>
 <div class="control-group">
-<label class="control-label" for="jobtitle">Name of your company :</label>
+<label class="control-label" for="companyname">Name of your company :</label>
 <div class="controls">
-<input type="text" id="company" placeholder="" <="" div=""> 
+<input type="text" id="companyname" placeholder="" <="" div=""> 
 </div>
 </div>
 <div class="control-group">
-<label class="control-label" for="jobtitle">Company Description :</label>
+<label class="control-label" for="companydescription">Company Description :</label>
 <div class="controls">
-<textarea rows="3"></textarea>
+<textarea rows="3" id="companydescription"></textarea>
 </div>
 </div>
 <div class="form-actions">
-<button type="submit" class="btn btn-primary">Save changes</button>
-<button type="button" class="btn">Cancel</button>
-</div>
-</div>
-</div>
-</form>
+<button type="submit" class="btn btn-primary jobpost" id="<?php echo $profile_database['id']; ?>">Post Job</button>
 
+</div>
+</div>
+</div>
+</div>
+      
+       <div class="alert alert-success" id ="mes" style="display:none;">
+                
+        </div>
+        <div class="alert alert-error" id = "mes1" style="display:none;">
 
     	</div>
+    </div>
 	<div class="tab-pane well" id="logout">
       		<p>Logout</p>
 		
@@ -537,6 +525,10 @@ Network 2
 
 <script type="text/javascript">
 
+
+
+
+
 function getdetail(el) { 
     var id = el.id;
    console.log(id);
@@ -554,6 +546,7 @@ function getdetail(el) {
                       $("#lastname1").val(obj['lastName']);
                        $("#email1").val(obj['email']);
                         $("#college1").val(obj['college']);
+                        $("#department1").val(obj['department']);
                          $("#company1").val(obj['company']);
                           $("#bio1").val(obj['bio']);
                            $("#experience1").val(obj['experience']);
@@ -570,6 +563,164 @@ function getdetail(el) {
     return false; 
 }
 
+
+
+
+
+
+
+$('.profiledetail').click(function() { 
+        var id = $(this).attr('id');
+       // console.log(id);
+
+        var college = document.getElementById("college").value;
+        var department = document.getElementById("department").value;
+        var company = document.getElementById("company").value;
+        var bio =document.getElementById("bio").value;
+        var experience = document.getElementById("experience").value;
+        var skills = document.getElementById("skills").value;
+        var interests = document.getElementById("interests").value;
+        var r = '';
+
+
+        var radios = document.getElementsByName("optionsRadios");
+
+         for (var i = 0; i < radios.length; i++) {       
+               if (radios[i].checked) {
+                      r = radios[i].value;
+                     break;
+                }
+    }
+
+    console.log(r);
+
+        var sdata = {"id": id , "college" :college ,"department" :department , "company" :company , "bio" :bio , "experience" :experience, "skills" :skills ,"interests" :interests};
+       // console.log(send_data);
+
+          $.ajax({
+            url: '<?php echo site_url('hauth/userprofile_data');?>',
+            type:'POST',
+            data:  sdata,
+            success: function(output){
+                  var obj = output;
+                    console.log(obj);
+
+                    if(obj == 1)
+                    {
+                      $('#mess').html("Data is inserted").show().fadeOut(6000);
+                    }
+                    else
+                    {
+                      $('#mess1').html("Data is not inserted").show().fadeOut(6000);
+                    }
+                              
+
+
+
+                } 
+            });   
+        return false; 
+    }); 
+
+
+
+
+$('.jobpost').click(function() { 
+        var postpersonid = $(this).attr('id');
+       // console.log(id);
+
+      var jobtitle = document.getElementById("jobtitle").value;
+      var jobdescription = document.getElementById("jobdescription").value;
+      var salary = document.getElementById("salary").value;
+      var jobexperience =document.getElementById("jobexperience").value;
+      var date = document.getElementById("date").value;
+
+      var jn1 = document.getElementById("jobnetwork1");
+      var jn2 = document.getElementById("jobnetwork2");
+
+      var jobnetwork1 = '';
+      var jobnetwork2 = '';
+      
+      if (jn1.checked){
+       var jobnetwork1 = document.getElementById("jobnetwork1").value;
+        }
+
+      if(jn2.checked){
+        var jobnetwork2 = document.getElementById("jobnetwork2").value;
+      }
+        
+
+      var companyname = document.getElementById("companyname").value;
+      var companydescription = document.getElementById("companydescription").value;
+
+
+      var jdata = {"postpersonid" : postpersonid,"jobtitle" : jobtitle,"jobdescription" : jobdescription,"salary" : salary,"jobexperience" : jobexperience,"date" : date,"jobnetwork1" :jobnetwork1,"jobnetwork2" : jobnetwork2,"companyname" : companyname,"companydescription" : companydescription};
+      
+       $.ajax({
+            url: '<?php echo site_url('hauth/jobpost');?>',
+            type:'POST',
+            data:  jdata,
+            success: function(output){
+                  var obj = output;
+                    console.log(obj);
+
+                   if(obj == 1)
+                    {
+                      //console.log("job posted");
+                      $('#mes').html("Job is posted and your credit has been increamented").show().fadeOut(6000);
+                    }
+                    else
+                    {
+                      $('#mes1').html("Job is not posted").show().fadeOut(6000);
+                      //console.log("job not posted");
+                    }
+                  
+
+                } 
+            });   
+
+      
+
+       
+
+         
+        return false; 
+    }); 
+
+
+
+function test()
+{
+  var refreshId = setInterval(function() {
+
+      var userid = <?php echo $profile_database['id']; ?>;
+      //console.log(userid);
+
+      var data = {"userid" : userid};
+       $.ajax({
+            url: '<?php echo site_url('hauth/getjobdetails');?>',
+            type:'POST',
+            data:  data,
+            success: function(output){
+               var obj = output;
+                 // var obj = jQuery.parseJSON(output);
+                  console.log(obj);
+
+                  
+                  
+
+                } 
+            });   
+
+
+  }, 5000);
+
+  return false;
+}
+
+$(document).ready(function(){
+    test();
+});
 
 
 </script>

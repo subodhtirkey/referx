@@ -168,6 +168,108 @@ echo json_encode($status);
 
 }
 
+
+public function userprofile_data()
+{
+	$id =$_POST['id'];
+	$college =$_POST['college'];
+	$department =$_POST['department'];
+	$company =$_POST['company'];
+	$bio =$_POST['bio'];
+	$experience =$_POST['experience'];
+	$skills =$_POST['skills'];
+	$interests =$_POST['interests'];
+
+	
+
+	$d = array(
+				'id' =>	$id, 
+				'college'=> $college,
+				'department' => $department,
+				'company' => $company,
+				'bio' => $bio,
+				'experience' => $experience,
+				'skills' => $skills,
+				'interests' => $interests	
+			);
+	//echo "Hello";
+
+	$this->load->model('users');
+	$status = $this->users->userprofile_data($d);
+	
+	echo $status;
+	
+
+	//$status = $this->users->userprofile_data($data1);
+
+	//echo json_encode($sdata);
+}
+
+
+public function jobpost()
+{
+	 $postpersonid = $_POST['postpersonid'];
+      $jobtitle = $_POST['jobtitle'];
+      $jobdescription = $_POST['jobdescription'];
+      $salary = $_POST['salary'];
+      $jobexperience = $_POST['jobexperience'];
+      $date = $_POST['date'];
+	  $jobnetwork1 = $_POST['jobnetwork1'];
+	  $jobnetwork2 = $_POST['jobnetwork2'];  
+
+      $companyname = $_POST['companyname'];
+      $companydescription = $_POST['companydescription'];
+
+     // echo "Subodh";
+
+	$j = array(
+				'postpersonid' => $postpersonid,
+      			'jobtitle' => $jobtitle,
+      			'jobdescription' => $jobdescription,
+      			'salary' => $salary,
+      			'jobexperience' => $jobexperience,
+      			'date' => $date,
+	  			'jobnetwork1' => $jobnetwork1,
+	  			'jobnetwork2' => $jobnetwork2, 
+      			'companyname' => $companyname,
+      			'companydescription' => $companydescription
+			);
+
+	//echo "Hello";
+
+	$this->load->model('users');
+	$status = $this->users->jobpost($j);
+	
+	echo $status;
+
+
+	//$status = $this->users->userprofile_data($data1);
+
+	//echo json_encode($sdata);
+}
+
+
+public function getjobdetails()
+{
+	 $userid = $_POST['userid'];
+
+
+	 $data = array(
+				'userid' => $userid
+			);
+
+	//echo "Hello";
+
+	$this->load->model('users');
+	$status = $this->users->getjobdetails($data);
+	
+	//echo json_encode($status);
+	echo $status;
+
+}
+
+
+
 /*------------------------------------------------------------------------------------*/
 
 

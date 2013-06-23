@@ -75,7 +75,7 @@ class Users extends CI_Model {
 			'name' =>$username,
 			'provider' => $provider,
 			'photourl' => $photoURL,
-			'firstname' => $firstName 
+			'firstname' => $firstName
 			);
 
 		$this->session->set_userdata($data1);
@@ -122,7 +122,8 @@ class Users extends CI_Model {
 			'firstName' => $firstname,
 			'lastName' => $lastname,
 			'email' => $email,
-			'photourl' => $photoURL
+			'photourl' => $photoURL,
+			'credits' => 100
 			);
 
 		$this->db->insert('myusers', $data1);
@@ -455,5 +456,199 @@ public function network1($data)
 	}
 
 
+
+
+	public function userprofile_data($d)
+	{
+			$id = $d['id'];	
+			$college = $d['college'];
+			$department = $d['department'];
+			$company = $d['company'];
+			$bio = $d['bio'];
+			$experience = $d['experience'];
+			$skills = $d['skills'];
+			$interests = $d['interests'];
+
+			$dd = array(
+				'college' => $college,
+				'department' => $department,
+				'company' => $company,
+				'bio' => $bio,
+				'experience' => $experience,
+				'skills' => $skills,
+				'interests' => $interests
+				);
+			//echo data1;
+
+			//echo "Hello";
+			
+		$this->db->where('id', $id);
+		$q = $this->db->update('myusers',$dd);
+
+		if($q)
+		{
+			echo 1; //data is inserted
+		}
+		else
+		{
+			echo 2; //data is not inserted
+		}
+
+
+		//echo "Hello1";
 		
+	}
+
+public function jobpost($j)
+	{
+		//echo "hi";
+	  $postpersonid = $j['postpersonid'];
+      $jobtitle = $j['jobtitle'];
+      $jobdescription = $j['jobdescription'];
+      $salary = $j['salary'];
+      $jobexperience = $j['jobexperience'];
+      $date = $j['date'];
+	  $jobnetwork1 = $j['jobnetwork1'];
+	  $jobnetwork2 = $j['jobnetwork2'];  
+
+      $companyname = $j['companyname'];
+      $companydescription = $j['companydescription'];
+
+
+      //echo "Awesome";
+		$jj = array(
+      			'jobtitle' => $jobtitle,
+      			'jobdescription' => $jobdescription,
+      			'jobsalary' => $salary,
+      			'jobexperience' => $jobexperience,
+      			'date' => $date,
+	  			'jobnetwork1' => $jobnetwork1,
+	  			'jobnetwork2' => $jobnetwork2, 
+      			'companyname' => $companyname,
+      			'companydescription' => $companydescription,
+      			'postpersonid' => $postpersonid
+			);
+			
+ //echo "Awesome";
+		$q = $this->db->insert('myjobs1', $jj);
+
+		if($q)
+		{
+	//		echo 1; //data is inserted
+		}
+		else
+		{
+	//		echo 2; //data is not inserted
+		}
+
+
+		//echo "Hello1";
+		$credits = '';
+
+		$q1 = "SELECT * FROM myusers WHERE id = '".$postpersonid."' ";
+			$query1 = $this->db->query($q1);
+		//echo "SS1";	
+			if($query1)
+			{
+			//	echo "Success";
+						foreach ($query1->result() as $row)
+					{
+   						 $credits = $row->credits;
+  					 	
+					}
+
+
+
+					$credits = $credits + 100 ;
+
+	//				echo $credits;
+
+					$dcredits = array('credits' => $credits );
+
+
+					$this->db->where('id', $postpersonid);
+					$q2 = $this->db->update('myusers',$dcredits);
+
+					if($q2)
+					{
+						echo 1;
+					}
+					else
+					{
+						echo 2;
+					}
+
+				
+
+			}
+			else
+			{
+				echo "Query Is wrong";			
+			}
+
+		
+		
+	}
+
+
+
+
+
+	public function getjobdetails($j)
+	{
+		//echo "hi";
+	  $userid = $j['userid'];
+
+	  $college = '';
+	  $company = '';
+		$q1 = "SELECT * FROM myusers WHERE id = '".$userid."' ";
+			$query1 = $this->db->query($q1);
+				if($query1)
+					{
+					//	echo "Success";
+						foreach ($query1->result() as $row)
+						{
+   						 $college = $row->college;
+   						 $company = $row->company;
+						}
+
+					//echo $college;
+					//echo $company;
+
+
+									
+
+					$q2 = "SELECT * FROM myjobs1 WHERE jobnetwork1 = '".$college."' OR jobnetwork2 = '".$company."' ";
+					//echo $q2;
+					$query2 = $this->db->query($q2);
+					//echo "Sam";
+					if($query2)
+					{
+						echo 1;
+						//$data1 = array();
+						//return $data1 = $query2->result();
+
+
+					}
+					else
+					{
+						echo 2;
+					}
+
+				
+
+			}
+			else
+			{
+				echo "Query Is wrong";			
+			}
+
+		
+		
+	}
+
+
+
+
+
 }
